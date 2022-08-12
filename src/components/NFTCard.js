@@ -1,6 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import { COLORS, SIZES, SHADOWS } from '../constants';
+import { COLORS, SIZES, SHADOWS, assets } from '../constants';
+import { CircleButton } from './Button';
+import { NFTTitle, SubInfo } from './SubInfo';
 
 const NFTCard = ({ data }) => {
   const navigation = useNavigation();
@@ -13,7 +15,14 @@ const NFTCard = ({ data }) => {
           style={NFTCardStyle.nftImage}
         />
       </View>
-      <Text>{data.name}</Text>
+
+      <CircleButton imgUrl={assets.heart} right={10} top={10} />
+
+      <SubInfo />
+
+      <View style={NFTCardStyle.nftWrapper}>
+        <NFTTitle />
+      </View>
     </View>
   );
 };
@@ -28,13 +37,17 @@ const NFTCardStyle = StyleSheet.create({
   },
   nft: {
     width: '100%',
-    heigth: 150,
+    height: 150,
   },
   nftImage: {
     width: '100%',
-    heigth: '50%',
+    height: '100%',
     borderTopLeftRadius: SIZES.font,
     borderTopRightRadius: SIZES.font,
+  },
+  nftWrapper: {
+    padding: SIZES.font,
+    width: '100%',
   },
 });
 

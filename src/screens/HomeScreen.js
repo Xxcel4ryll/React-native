@@ -15,9 +15,9 @@ import { HomeHeader, FocusStatusBar, NFTCard } from '../components';
 const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={HomeStyles.wrapper}>
-      <FocusStatusBar background={COLORS.primary} />
+      <FocusStatusBar />
       <View style={{ flex: 1 }}>
-        <View style={{ zIndex: 100 }}>
+        <View style={{ zIndex: 0 }}>
           <FlatList
             data={NFTData}
             renderItem={({ item }) => <NFTCard data={item} />}
