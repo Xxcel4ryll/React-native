@@ -1,18 +1,40 @@
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { assets, COLORS, FONTS, SHADOWS, SIZES } from '../constants';
 
-export const NFTTitle = () => {
+export const NFTTitle = ({ title, creator, titleSize, creatorSize }) => {
   return (
     <View>
-      <Text>NFTTitle</Text>
+      <Text
+        style={{
+          fontFamily: FONTS.semiBold,
+          fontSize: titleSize,
+          color: COLORS.primary,
+        }}
+      >
+        {title}
+      </Text>
+      <Text
+        style={{
+          fontFamily: FONTS.regular,
+          fontSize: creatorSize,
+          color: COLORS.primary,
+        }}
+      >
+        {creator}
+      </Text>
     </View>
   );
 };
 
-export const EthPrice = () => {
+export const EthPrice = ({ price }) => {
   return (
-    <View>
-      <Text>EthPrice</Text>
+    <View style={subInfoStyle.flex}>
+      <Image
+        source={assets.eth}
+        resizeMode="contain"
+        style={subInfoStyle.image}
+      ></Image>
+      <Text>{price}</Text>
     </View>
   );
 };
@@ -93,5 +115,15 @@ const subInfoStyle = StyleSheet.create({
     fontSize: SIZES.medium,
     color: COLORS.primary,
     fontFamily: FONTS.semiBold,
+  },
+  image: {
+    width: 20,
+    height: 20,
+    marginRight: 2,
+  },
+  flex: {
+    justifyContent: 'center',
+    alignitems: 'row',
+    flexDirection: 'row',
   },
 });

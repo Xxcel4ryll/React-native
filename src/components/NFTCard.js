@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import { COLORS, SIZES, SHADOWS, assets } from '../constants';
-import { CircleButton } from './Button';
-import { NFTTitle, SubInfo } from './SubInfo';
+import { COLORS, SIZES, SHADOWS, assets, FONTS } from '../constants';
+import { CircleButton, RectButton } from './Button';
+import { EthPrice, NFTTitle, SubInfo } from './SubInfo';
 
 const NFTCard = ({ data }) => {
   const navigation = useNavigation();
@@ -21,7 +21,21 @@ const NFTCard = ({ data }) => {
       <SubInfo />
 
       <View style={NFTCardStyle.nftWrapper}>
-        <NFTTitle />
+        <NFTTitle
+          title={data.name}
+          creator={data.creator}
+          titleSize={SIZES.large}
+          creatorSize={SIZES.small}
+        />
+
+        <View style={NFTCardStyle.coinType}>
+          <EthPrice price={data.price} />
+          <RectButton
+            minWidth={120}
+            fontSize={FONTS.font}
+            handlePress={() => navigation.navigate('Details', { data })}
+          />
+        </View>
       </View>
     </View>
   );
@@ -48,6 +62,12 @@ const NFTCardStyle = StyleSheet.create({
   nftWrapper: {
     padding: SIZES.font,
     width: '100%',
+  },
+  coinType: {
+    marginTop: SIZES.font,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 

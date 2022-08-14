@@ -37,7 +37,7 @@ export default () => {
           component={HomeScreen}
           options={{ title: 'One Love' }}
         />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Details" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
