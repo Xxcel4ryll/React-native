@@ -18,16 +18,7 @@ const theme = {
 };
 
 export default () => {
-  const [loaded] = useFonts({
-    InterBold: require('./src/assets/fonts/Inter-Bold.ttf'),
-    InterLight: require('./src/assets/fonts/Inter-Light.ttf'),
-    InterMedium: require('./src/assets/fonts/Inter-Medium.ttf'),
-    InterRegular: require('./src/assets/fonts/Inter-Regular.ttf'),
-    InterSemiBold: require('./src/assets/fonts/Inter-SemiBold.ttf'),
-  });
   const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
-
-  if (!loaded) return null;
 
   useEffect(async () => {
     const appData = await AsyncStorage.getItem('isAppFirstLaunched');
@@ -39,6 +30,16 @@ export default () => {
       setIsAppFirstLaunched(false);
     }
   }, []);
+
+  const [loaded] = useFonts({
+    InterBold: require('./src/assets/fonts/Inter-Bold.ttf'),
+    InterLight: require('./src/assets/fonts/Inter-Light.ttf'),
+    InterMedium: require('./src/assets/fonts/Inter-Medium.ttf'),
+    InterRegular: require('./src/assets/fonts/Inter-Regular.ttf'),
+    InterSemiBold: require('./src/assets/fonts/Inter-SemiBold.ttf'),
+  });
+
+  if (!loaded) return null;
 
   return (
     isAppFirstLaunched != null && (
