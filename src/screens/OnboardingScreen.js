@@ -130,10 +130,10 @@ const OnboardingScreen = ({ navigation }) => {
         onMomentumScrollEnd={updateCurrentSlideIndex}
         pagingEnabled
         data={slides}
-        showHorizontalScreenIndicator={true}
         horizontal
+        showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => <Slide item={item} />}
-        contentContainerStyle={{ height: height * 0.75 }}
+        contentContainerStyle={{ height: height * 0.7 }}
       />
       <Indicator />
     </SafeAreaView>

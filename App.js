@@ -18,18 +18,17 @@ const theme = {
 };
 
 export default () => {
-  const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
+  const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(true);
 
-  useEffect(async () => {
-    const appData = await AsyncStorage.getItem('isAppFirstLaunched');
-    console.log(appData);
-    if (appData == null) {
-      setIsAppFirstLaunched(true);
-      AsyncStorage.setItem('isAppFirstLaunched', 'false');
-    } else {
-      setIsAppFirstLaunched(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const appData = AsyncStorage.getItem('isAppFirstLaunched');
+  //   if (appData == null) {
+  //     setIsAppFirstLaunched(true);
+  //     AsyncStorage.setItem('isAppFirstLaunched', 'false');
+  //   } else {
+  //     setIsAppFirstLaunched(false);
+  //   }
+  // }, []);
 
   const [loaded] = useFonts({
     InterBold: require('./src/assets/fonts/Inter-Bold.ttf'),
@@ -46,7 +45,7 @@ export default () => {
       <NavigationContainer theme={theme}>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          // initialRouteName="OnBoard"
+          initialRouteName="OnBoard"
         >
           {isAppFirstLaunched && (
             <Stack.Screen name="OnBoard" component={OnboardingScreen} />
