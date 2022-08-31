@@ -1,11 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
+import { useContext } from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { COLORS, SIZES, SHADOWS, assets, FONTS } from '../constants';
+import { AuthContext } from '../context/AuthContext';
 import { CircleButton, RectButton } from './Button';
 import { EthPrice, NFTTitle, SubInfo } from './SubInfo';
 
 const NFTCard = ({ data }) => {
   const navigation = useNavigation();
+
+  const { logOut } = useContext(AuthContext);
+
   return (
     <View style={NFTCardStyle.card}>
       <View style={NFTCardStyle.nft}>
@@ -33,7 +38,8 @@ const NFTCard = ({ data }) => {
           <RectButton
             minWidth={120}
             fontSize={FONTS.font}
-            handlePress={() => navigation.navigate('Details', { data })}
+            // handlePress={() => navigation.navigate('Details', { data })}
+            handlePress={() => logOut()}
           />
         </View>
       </View>

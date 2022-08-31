@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import { View, Image, Text, TextInput } from 'react-native';
 import { assets, COLORS, FONTS, SIZES } from '../constants';
+import { AuthContext } from '../context/AuthContext';
 
 const HomeHeader = ({ onSearch }) => {
+  const { userInfo } = useContext(AuthContext);
+
   return (
     <View
       style={{
@@ -64,7 +68,7 @@ const HomeHeader = ({ onSearch }) => {
             color: COLORS.white,
           }}
         >
-          Hello there! 👋
+          Hello there {userInfo.firstName}! 👋
         </Text>
         <Text
           style={{

@@ -1,21 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 
-import { HomeScreen, OnboardingScreen, ProfileScreen } from './src/screens';
 import { useEffect, useState } from 'react';
+import Navigation from './src/components/Navigation';
+import { AuthProvider } from './src/context/AuthContext';
 
 const Stack = createNativeStackNavigator();
-
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: 'transparent',
-  },
-};
 
 export default () => {
   const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(true);
@@ -41,23 +33,8 @@ export default () => {
   if (!loaded) return null;
 
   return (
-    isAppFirstLaunched != null && (
-      <NavigationContainer theme={theme}>
-        <Stack.Navigator
-          screenOptions={{ headerShown: false }}
-          initialRouteName="OnBoard"
-        >
-          {isAppFirstLaunched && (
-            <Stack.Screen name="OnBoard" component={OnboardingScreen} />
-          )}
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ title: 'One Love' }}
-          />
-          <Stack.Screen name="Details" component={ProfileScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    )
+    <AuthProvider>
+      <Navigation />
+    </AuthProvider>
   );
 };

@@ -75,7 +75,7 @@ const ProfileScreen = ({ route, navigation }) => {
             <View style={{ padding: SIZES.font }}>
               <DetailsDesc data={data} />
 
-              {data.bids.length && (
+              {data.bids.length > 0 && (
                 <Text
                   style={{
                     fontSize: SIZES.font,
